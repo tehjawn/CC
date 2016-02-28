@@ -29,10 +29,7 @@
                             $.ajax({
                                 type: "POST",
                                 url: "/",
-                                data: text,
-                                success: function (text) {
-                                    alert(text);
-                                }
+                                data: { input: text }
                             });
                         };
                         recognizer.onerror = function (error) {
