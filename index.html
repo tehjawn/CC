@@ -37,12 +37,12 @@
                                     //responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
                                     //console.log(data.activity);
                                     
-                                    switch (data.activity) {
-                                        case 'pushups':
-                                            responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
+                                    switch (data.action) {
+                                        case 'exercise':
+                                            responsiveVoice.speak("You did " + data.number + data.activity/* + " and burned " + data.calorie + " calories"*/, "UK English Female");
                                             break;
-                                        case 'pull-ups':
-                                            responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
+                                        case 'calorie':
+                                            responsiveVoice.speak("You gained " + data.number + " calories", "UK English Female");
                                             break;
                                         default:
                                             break;
