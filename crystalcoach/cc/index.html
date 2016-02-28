@@ -65,6 +65,11 @@
 					<span id="crystalSuggest"></span>
 				</div>
 			</div>
+
+			<canvas id="line" class="chart chart-line" chart-data="data"
+			  chart-labels="labels" chart-legend="true" chart-series="series"
+			  chart-click="onClick" >
+			</canvas>
 		</div>
 	</div>
 
@@ -79,6 +84,8 @@
 	<script src='https://cdn.firebase.com/js/client/2.1.0/firebase.js'></script>
 	<!-- Firechat -->
 	<script src='https://cdn.firebase.com/libs/firechat/2.0.1/firechat.min.js'></script>
+	<!-- Angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
 
   <!-- CUSTOM -->
   <!-- Main CrystalCoach Functions -->
@@ -87,5 +94,7 @@
 	<script src="./js/main.js"></script>
 	<!-- Fancy Particle BG Courtesy of Codrops -->
 	<script src="./js/animated-bg.js"></script>
+	<!-- NG Graph -->
+	<script src="./js/main.js"></script>
 </body>
 </html>

@@ -16,8 +16,11 @@ chatbox{
 }*/
 
 #messageStore{
-	max-height: 75%;
-    overflow: scroll;
+	position: absolute;
+	/*background-color: white;*/
+	height: 400px;
+	width: 250px;
+  overflow: scroll;
 }
 #messageStore::-webkit-scrollbar {
 	width: 0px;
@@ -116,4 +119,12 @@ chatbox{
 .talk-btn:hover {
 	cursor: pointer;
 	opacity: .9;
+}
+
+#line {
+	display: none;
+	position: absolute;
+	bottom: 20px;
+	right: 20px;
+	z-index: 100;
 }

@@ -16,6 +16,11 @@ var caloriesTime = function(calories,time){
 // var name;
 
 var caloriesBurn = 0;
+
+updateCalories = function(calories){
+	$("#calories").text(calories);
+}
+
 var log = [];
 
 var leanSchedule = [
@@ -59,6 +64,7 @@ startCoach = function() {
     $("#app").fadeIn();
     $("#demo-canvas").fadeIn();
     $(".app-content").fadeIn();
+    $("#line").fadeIn();
     $("#bg").addClass("blurred");
 
     // setTimeout(function(){
@@ -120,7 +126,7 @@ startCoach = function() {
                 console.log(ex.message);
             }
         }
-    }, 7000);
+    }, 6000);
 }
 
 say = function(speech) {
@@ -253,7 +259,7 @@ getVoice = function() {
             }
         }
     }, 100);
-
+	updateCalories(caloriesBurn);
 }
 
 
@@ -274,10 +280,10 @@ init_firebase = function(username) {
     console.log("Attempted to connect to https://crystalcoach.firebaseio.com/" + username);
     messagesRef.push({
     	name: "Crystal",
-    	text: "Hi" + currentUser + ", it's nice to see you!"
+    	text: "Hi " + currentUser + ", it's nice to see you!"
     });
 
-    $("#calories").text(messagesRef.calories);
+    $("#calories").text(caloriesBurn);
     $("#crystalSuggest").text("messagesRef".crystalSuggest);
 
     // Add a callback that is triggered for each chat message.
@@ -298,10 +304,10 @@ init_firebase = function(username) {
         messageList.append(messageElement)
 
         //SCROLL TO BOTTOM OF MESSAGE LIST
-        messageList[0].scrollTop = messageList[0].scrollHeight;
-        $("#messageStore").animate({
-            scrollTop: $('#messageStore')[0].scrollHeight
-        }, 1000);
+        // messageList[0].scrollTop = messageList[0].scrollHeight;
+        // $("#messageStore").animate({
+        //     scrollTop: $('#messageStore')[0].scrollHeight
+        // }, 1000);
     });
 
     removeMessage = function(key) {
