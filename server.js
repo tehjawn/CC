@@ -25,8 +25,14 @@ app.post('/', function (req, res) {
  
 	request.on('response', function(response) {
     	console.log(response);
-    	textResponse.activity = response.result.parameters.RepBaseWorkouts;
-		textResponse.number = response.result.parameters.number;
+    	if(response.result.parameters.RepBaseWorkouts != undefined){
+    		textResponse.activity = response.result.parameters.RepBaseWorkouts;
+    		textResponse.number = response.result.parameters.number;
+    	}
+    	else if(response.result.parameters.TimeBaseWorkouts != undefined){
+    		textResponse.activity = response.result.parameters.TimeBaseWorkouts;
+    		textResponse.duration = response.result.parameters.duration;
+    	}
 		textResponse.intent = response.result.action;
 	});
  
