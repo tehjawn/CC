@@ -13,7 +13,7 @@ app.use(express.static('/public'));
 
 
 app.get('/',function(req,res){
-	app.end();
+    res.sendFile('/', {root: __dirname + "/"});
 });
 
 
