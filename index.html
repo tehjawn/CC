@@ -1,9 +1,61 @@
 <html>
+    <head>
+        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
+        <!--<script type="text/javascript" src="./main.js"></script>-->
+    </head>
+
     <body>
-        <form action="POST">
-            <button>TEST</button>
-        </form>
+
+        <script>
+            $(document).ready(function () {
+                $('.test-button').click(function () {
+                    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+
+                    if (window.SpeechRecognition == null) {
+                        console.log('empty');
+                    } else {
+                        var recognizer = new window.SpeechRecognition();
+                        recognizer.continuous = false;
+                        var text;
+                        recognizer.onresult = function (event) {
+                            for (var i = event.resultIndex; i < event.results.length; i++) {
+                                if (event.results[i].isFinal) {
+                                    text = event.results[i][0].transcript;
+                                } else {
+                                    text += event.results[i][0].transcript;
+                                }
+                            }
+                            console.log(text);
+                            //$.ajax({
+                            //    url: "/",
+                            //    beforeSend: function (xhr) {
+                            //        xhr.setRequestHeader("Authorization", "Basic " + btoa("username:password"));
+                            //    },
+                            //    Authorization: "Bearer c66c588c23ab41e3be10446a89499020",
+                            //    'ocp-apim-subscription-key': "22e17226-e86d-4206-bb01-f1e87c99af5d",
+                            //    type: 'POST',
+                            //    success: function (text) {
+                            //        alert(JSON.stringify(text));
+                            //    },
+                            //    error: function () {
+                            //        alert("Cannot get data");
+                            //    }
+                            //});
+                        };
+                        recognizer.onerror = function (error) {
+                            console.log(error); 
+                        };
+                        try {
+                            recognizer.start(); // SUCCESS
+                        } catch (ex) {
+                            console.log(ex.message);
+                        }
+                    }
+                });
+            });
+        </script>
+
+        <button class="test-button">TEST</button>
+
     </body>
 </html>
-<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-<script type="text/javascript" src="./main.js"></script>
