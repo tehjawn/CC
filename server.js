@@ -19,6 +19,18 @@ app.get('/',function(req,res){
 
 app.post('/', function (req, res) {
     console.log(req.body.input);
+
+	var request = api.textRequest(req.body.input);
+ 
+	request.on('response', function(response) {
+    	console.log(response);
+	});
+ 
+	request.on('error', function(error) {
+    	console.log(error);
+	});
+ 
+	request.end()
     res.send();
 });
 
