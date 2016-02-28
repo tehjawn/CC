@@ -25,13 +25,18 @@ app.post('/', function (req, res) {
  
 	request.on('response', function(response) {
     	console.log(response);
-    	if(response.result.parameters.RepBaseWorkouts != undefined){
-    		textResponse.activity = response.result.parameters.RepBaseWorkouts;
-    		textResponse.number = response.result.parameters.number;
+    	var objects = response.result.parameters;
+    	if(objects.RepBaseWorkouts != undefined){
+    		textResponse.activity = objects.RepBaseWorkouts;
+    		textResponse.number = objects.number;
     	}
-    	else if(response.result.parameters.TimeBaseWorkouts != undefined){
-    		textResponse.activity = response.result.parameters.TimeBaseWorkouts;
-    		textResponse.duration = response.result.parameters.duration;
+    	else if(objects.TimeBaseWorkouts != undefined){
+    		textResponse.activity = objects.TimeBaseWorkouts;
+    		textResponse.duration = objects.duration;
+    	}
+    	else if(objects.name != undefined){
+    		textResponse.username = objects.name;
+    		console.log("send: " +objects.name);
     	}
 		textResponse.intent = response.result.action;
 	});

@@ -10,78 +10,85 @@ var caloriesTime = function(calories,time){
     return calories;
 }
 
+var log = [];
+
+var name;
+
 $(document).ready(function () {
 
-    setTimeout(function(){responsiveVoice.speak("my name is john and I am a princess" , "UK English Male");},2000);
-                $('.test-button').click(function () {
-                    window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+    // setTimeout(function(){responsiveVoice.speak("my name is john and I am a princess" , "UK English Male");},2000);
+      $('.test-button').click(function () {
+          window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;
 
-                    if (window.SpeechRecognition == null) {
-                        console.log('empty');
-                    } else {
-                        var recognizer = new window.SpeechRecognition();
-                        recognizer.continuous = false;
-                        var text;
-                        recognizer.onresult = function (event) {
-                            for (var i = event.resultIndex; i < event.results.length; i++) {
-                                if (event.results[i].isFinal) {
-                                    text = event.results[i][0].transcript;
-                                } else {
-                                    text += event.results[i][0].transcript;
-                                }
-                            }
-                            console.log(text);
-                            $.ajax({
-                                type: "POST",
-                                url: "/",
-                                data: { input: text },
-                                success: function(data){
-                                    console.log(data);
-                                    //responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
-                                    //console.log(data.activity);
-                                    
-                                    switch (data.intent) {
-                                        case 'RepWorkout':
-                                            responsiveVoice.speak("Great, I added " + data.number + data.activity + " to your log" , "UK English Female");
-                                            caloriesBurn = caloriesRep(caloriesBurn,data.number);
-                                            break;
-                                        case 'TimeBaseWorkouts':
-                                            var unit; 
-                                            if(data.duration.unit == 's'){
-                                                unit = "seconds";
-                                            }
-                                            else if(data.duration.unit == 'min'){
-                                                unit = "minutes"
+          if (window.SpeechRecognition == null) {
+              console.log('empty');
+          } else {
+              var recognizer = new window.SpeechRecognition();
+              recognizer.continuous = false;
+              var text;
+              recognizer.onresult = function (event) {
+                  for (var i = event.resultIndex; i < event.results.length; i++) {
+                      if (event.results[i].isFinal) {
+                          text = event.results[i][0].transcript;
+                      } else {
+                          text += event.results[i][0].transcript;
+                      }
+                  }
+                  console.log(text);
+                  $.ajax({
+                      type: "POST",
+                      url: "/",
+                      data: { input: text },
+                      success: function(data){
+                          console.log(data);
+                          //responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
+                          //console.log(data.activity);
+                          
+                          switch (data.intent) {
+                              case 'RepWorkout':
+                                  responsiveVoice.speak("Great, I added " + data.number + data.activity + " to your log" , "UK English Female");
+                                  caloriesBurn = caloriesRep(caloriesBurn,data.number);
+                                  break;
+                              case 'TimeBaseWorkouts':
+                                  var unit; 
+                                  if(data.duration.unit == 's'){
+                                      unit = "seconds";
+                                  }
+                                  else if(data.duration.unit == 'min'){
+                                      unit = "minutes"
 
-                                            }
-                                            else{
-                                                unit = "hours"
-                                            }
-                                            responsiveVoice.speak("Great, I added " + data.activity + "for" + data.duration.amount +unit+ " to your log" , "UK English Female");
-                                            caloriesBurn = caloriesTime(caloriesBurn,data.duration.amount);
-                                            break;
+                                  }
+                                  else{
+                                      unit = "hours"
+                                  }
+                                  responsiveVoice.speak("Great, I added " + data.activity + "for" + data.duration.amount +unit+ " to your log" , "UK English Female");
+                                  caloriesBurn = caloriesTime(caloriesBurn,data.duration.amount);
 
-                                        case 'caloriesCount':
-                                            responsiveVoice.speak("You burn " + caloriesBurn + "calories" , "UK English Female");
-                                            break;
+                                  break;
 
-                                        case 'scheduler':
+                              case 'caloriesCount':
+                                  responsiveVoice.speak("You burn " + caloriesBurn + "calories" , "UK English Female");
+                                  break;
+                             case 'name.save':
+                                   name = data.username;
+                                   responsiveVoice.speak("Hello," + name + " welcome to Crystal Coach I am your personal trainer, Crystal", "UK English Female");
+                                   break;
 
-                                        default:
-                                            responsiveVoice.speak("Sorry I didn't get that" , "UK English Female");
-                                            break;
-                                    }
-                                }
-                            });
-                        };
-                        recognizer.onerror = function (error) {
-                            console.log(error); 
-                        };
-                        try {
-                            recognizer.start(); // SUCCESS
-                        } catch (ex) {
-                            console.log(ex.message);
-                        }
-                    }
-                });
-            });
+                              default:
+                                  responsiveVoice.speak("Sorry I didn't get that" , "UK English Female");
+                                  break;
+                          }
+                      }
+                  });
+              };
+              recognizer.onerror = function (error) {
+                  console.log(error); 
+              };
+              try {
+                  recognizer.start(); // SUCCESS
+              } catch (ex) {
+                  console.log(ex.message);
+              }
+          }
+      });
+  });
