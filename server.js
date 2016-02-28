@@ -2,7 +2,7 @@ var apiai = require('apiai');
 var express = require('express');
 var app = express();
 // API.AI Connector (Client Key, Sub Key)
-var api = apiai("c66c588c23ab41e3be10446a89499020", "22e17226-e86d-4206-bb01-f1e87c99af5d");
+var api = apiai("3a70592383834529b940f1862e5bcc0b ", "c115821f-c02a-4455-ab87-6734db7054c4 ");
 
 
 var bodyParser = require('body-parser');
@@ -19,19 +19,28 @@ app.get('/',function(req,res){
 
 app.post('/', function (req, res) {
     console.log(req.body.input);
-
+    var textResponse = {};
+    var responses;
 	var request = api.textRequest(req.body.input);
  
 	request.on('response', function(response) {
     	console.log(response);
+    	textResponse.activity = response.result.parameters.workouts;
+		textResponse.number = response.result.parameters.number;
+    
 	});
  
 	request.on('error', function(error) {
     	console.log(error);
 	});
  
-	request.end()
-    res.send();
+	request.end();
+	setTimeout(function() {
+		console.log(textResponse);
+		res.json(textResponse);
+		
+	}, 1000);
+    
 });
 
 
