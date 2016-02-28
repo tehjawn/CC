@@ -34,8 +34,19 @@
                                 data: { input: text },
                                 success: function(data){
                                     console.log(data);
-                                    responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
-
+                                    //responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
+                                    //console.log(data.activity);
+                                    
+                                    switch (data.activity) {
+                                        case 'pushups':
+                                            responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
+                                            break;
+                                        case 'pull-ups':
+                                            responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
                             });
                         };

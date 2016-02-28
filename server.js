@@ -27,7 +27,7 @@ app.post('/', function (req, res) {
     	console.log(response);
     	textResponse.activity = response.result.parameters.workouts;
 		textResponse.number = response.result.parameters.number;
-    
+		textResponse.intent = response.result.action;
 	});
  
 	request.on('error', function(error) {
