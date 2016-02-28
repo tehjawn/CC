@@ -1,5 +1,5 @@
 $.ajax({
-    url: "https://api.api.ai/v1/query?v=20150910&query=weather&timezone=Europe/Paris&lang=en&contexts=weather&contexts=europe&sessionId=1234567890",
+    url: "localhost:8023",
     beforeSend: function(xhr) { 
       xhr.setRequestHeader("Authorization", "Basic " + btoa("username:password")); 
     },
