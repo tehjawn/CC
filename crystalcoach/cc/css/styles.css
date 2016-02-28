@@ -1,0 +1,99 @@
+html,
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Cabin, sans-serif;
+}
+
+#bg {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+  background-image: url(http://0.s3.envato.com/files/125554199/poly-282i.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+}
+
+.blurred {
+  -webkit-filter: blur(10px); /* Chrome, Safari, Opera */
+  filter: blur(10px);
+}
+
+#bg-overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+  background: white; /* For browsers that do not support gradients */
+  background: -webkit-linear-gradient(top, white, rgba(255,255,255,.8) 70%, rgba(0,0,0,0)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom, white, rgba(255,255,255,.8) 70%, rgba(0,0,0,0)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom, white, rgba(255,255,255,.8) 70%, rgba(0,0,0,0)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, white, rgba(255,255,255,.8) 70%, rgba(0,0,0,0)); /* Standard syntax */
+}
+
+#intro {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+#intro h1 {
+	position: absolute;
+	top: 40%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.to-app-btn {
+	outline: 0;
+	position: absolute;
+	background-color: white;
+  background: -webkit-linear-gradient(top, white, rgba(255,255,255,.5) 40%, rgba(0,100,210,.2)); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom, white, rgba(255,255,255,.5) 40%, rgba(0,100,210,.2)); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom, white, rgba(255,255,255,.5) 40%, rgba(0,100,210,.2)); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, white, rgba(255,255,255,.5) 40%, rgba(0,100,210,.2)); /* Standard syntax */
+	padding: 10px;
+	border-radius: 10px;
+	border: 0;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+}
+
+.to-app-btn:hover {
+	background-color: gray;
+  background: -webkit-linear-gradient(top, rgba(0,100,210,.2), rgba(255,255,255,.5) 40%); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom, rgba(0,100,210,.2), rgba(255,255,255,.5) 40%); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom, rgba(0,100,210,.2), rgba(255,255,255,.5) 40%); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom, rgba(0,100,210,.2), rgba(255,255,255,.5) 40%); /* Standard syntax */
+}
+
+/*#app {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: red;
+}*/
+
+#demo-canvas {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.app-content {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	text-align: center;
+}
