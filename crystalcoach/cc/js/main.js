@@ -19,6 +19,7 @@ var caloriesBurn = 0;
 
 updateCalories = function(calories){
 	$("#calories").text(calories);
+	$.apply
 }
 
 var log = [];
@@ -104,12 +105,12 @@ startCoach = function() {
                         switch (data.intent) {
                             case 'name.save':
                                 currentUser = splitScript[splitScript.length-1];
-                                responsiveVoice.speak("Hi " + currentUser + ", ", "UK English Female");
+                                responsiveVoice.speak("Hi " + currentUser + ", it's nice to see you!", "UK English Female");
                                 init_firebase(currentUser);
                                 break;
                             default:
                                 currentUser = splitScript[splitScript.length-1];
-                                responsiveVoice.speak("Hi " + currentUser + ", ", "UK English Female");
+                                responsiveVoice.speak("Hi " + currentUser + ", it's nice to see you!", "UK English Female");
                                 init_firebase(currentUser);
                                 break;
                         }
@@ -126,7 +127,7 @@ startCoach = function() {
                 console.log(ex.message);
             }
         }
-    }, 6000);
+    }, 5500);
 }
 
 say = function(speech) {
@@ -281,6 +282,10 @@ init_firebase = function(username) {
     messagesRef.push({
     	name: "Crystal",
     	text: "Hi " + currentUser + ", it's nice to see you!"
+    });
+    messagesRef.push({
+    	name: "Crystal",
+    	text: "Say 'I did 50 pushups', 'I ran for 5 minutes', 'Calories Burn', 'What should I do today?'"
     });
 
     $("#calories").text(caloriesBurn);

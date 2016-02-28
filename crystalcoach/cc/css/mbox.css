@@ -128,3 +128,7 @@ chatbox{
 	right: 20px;
 	z-index: 100;
 }
+
+.lazy-title-logo {
+	width: 50%;
+}
