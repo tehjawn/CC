@@ -9,11 +9,11 @@ var bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(bodyParser.text());
-app.use(express.static('/public'));
+app.use(express.static(__dirname + '/public'));
 
 
 app.get('/',function(req,res){
-    res.sendFile('/', { root: __dirname + "/" });
+    res.end();
 });
 
 
@@ -25,7 +25,7 @@ app.post('/', function (req, res) {
  
 	request.on('response', function(response) {
     	console.log(response);
-    	textResponse.activity = response.result.parameters.workouts;
+    	textResponse.activity = response.result.parameters.RepBaseWorkouts;
 		textResponse.number = response.result.parameters.number;
     
 	});

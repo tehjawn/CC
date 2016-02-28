@@ -1,15 +1,4 @@
-<html>
-    <head>
-
-        <script src="http://code.responsivevoice.org/responsivevoice.js"></script>
-        <script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-        <!--<script type="text/javascript" src="./main.js"></script>-->
-    </head>
-
-    <body>
-
-        <script>
-            $(document).ready(function () {
+$(document).ready(function () {
                 $('.test-button').click(function () {
                     window.SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition || null;
 
@@ -50,9 +39,3 @@
                     }
                 });
             });
-        </script>
-
-        <button class="test-button">TEST</button>
-
-    </body>
-</html>
