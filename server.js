@@ -13,27 +13,15 @@ app.use(express.static('/public'));
 
 
 app.get('/',function(req,res){
-	app.end();
+    res.sendFile('/', { root: __dirname + "/" });
 });
 
 
-app.post('/',function(req,res){
-
-	var response = req.body;
-	console.log(response);
-	var request = api.textRequest(response);
-	request.on('response', function(response) {
-	  console.log(response);
-	});
-	 
-	request.on('error', function(error) {
-	  console.log(error);
-	});
-	 
-	request.end();
-	res.end();
-
+app.post('/', function (req, res) {
+    console.log(req);
+    res.send();
 });
+
 
 app.listen(8023, function(){
   console.log('Listening on port 8023'); //Listening on port 8888
