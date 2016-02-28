@@ -23,8 +23,19 @@ $(document).ready(function () {
                                 data: { input: text },
                                 success: function(data){
                                     console.log(data);
-                                    responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
-
+                                    //responsiveVoice.speak("You did " + data.number + data.activity, "UK English Female");
+                                    //console.log(data.activity);
+                                    
+                                    switch (data.action) {
+                                        case 'exercise':
+                                            responsiveVoice.speak("You did " + data.number + data.activity/* + " and burned " + data.calorie + " calories"*/, "UK English Female");
+                                            break;
+                                        case 'calorie':
+                                            responsiveVoice.speak("You gained " + data.number + " calories", "UK English Female");
+                                            break;
+                                        default:
+                                            break;
+                                    }
                                 }
                             });
                         };
